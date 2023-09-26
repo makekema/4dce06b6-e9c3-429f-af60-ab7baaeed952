@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IFormData } from '../types/Types'
 import { postFormData } from '../services/ApiService';
 import { validateEmail } from '../helpers/Form';
 
 
 function Form() {
+
+  /* State variables */
 
   const [formData, setFormData] = useState<IFormData>({
     first_name: '',
@@ -15,6 +17,14 @@ function Form() {
 
   const [message, setMessage] = useState<string | null>(null);
 
+  /* useEffects */
+
+  useEffect(() => {
+    console.log(formData)
+  }, [formData])
+
+  /* Handler functions */
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -22,17 +32,18 @@ function Form() {
     if(!formData.first_name || !formData.email) {
       setMessage('First name and email are required fieds');
       return
-    }
+    };
 
-    //Ensure email is valid
+    //Ensure email address is valid
     if (!validateEmail(formData.email)) {
       setMessage('Please enter a valid email address');
       return
-    }
+    };
 
     try {
       //Post the form data using the api serice
-      await postFormData(formData)
+      console.log(formData)
+      //await postFormData(formData)
 
       //Reset form data after successful submission
       setFormData({
@@ -48,17 +59,18 @@ function Form() {
       //Handle any errors that occur during the form submission
       console.error('Form submission error:', error)
       setMessage('An error occurred while submitting the form')
-    }
-  }
+    };
+  };
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, files } = event.target;
+
 
     if (name === 'photo' && files && files.length > 0) {
       const file = files[0];
 
       //Ensure file does not exceed size restrictions
-      if (file.size > 1 * 1024 * 1024 ) {
+      if (file.size > 2 * 1024 * 1024 ) {
         setMessage('Please select a photo smaller than 2MB');
         //Reset the file input value
         event.target.value = '';
@@ -68,14 +80,17 @@ function Form() {
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: file,
-      }));      
+      }));
+
     } else {
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
       }));
-    } 
-  }
+    };
+  };
+
+  /* Render component */
 
   return (
     <>
@@ -123,6 +138,9 @@ function Form() {
         </div>
         <button type="submit">Submit</button>
       </form>
+      {message && (
+        <p>{message}</p>
+      ) }
     </>
   );
 }
