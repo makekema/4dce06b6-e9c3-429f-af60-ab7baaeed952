@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { postFormData } from '../services/ApiService';
 import { validateEmail } from '../helpers/validateEmail';
 

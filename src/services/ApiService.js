@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'http://localhost:3000/api';
 
 // Post form data to the API endpoint
 export async function postFormData(formData) {
