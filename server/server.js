@@ -39,7 +39,7 @@ app.post('/api', async (req, res) => {
       body: JSON.stringify(payload),
     })
 
-  console.log(response);
+    console.log(response);
 
     // Return the response from the target server to the client
     res.status(response.status);
@@ -68,5 +68,5 @@ app.use('^/$', (req, res) => {
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 app.listen(PORT, () => {
-  console.log('🎢 Server is listening on PORT 3000')
+  console.log(`🎢 Server is listening on PORT ${PORT}`)
 });

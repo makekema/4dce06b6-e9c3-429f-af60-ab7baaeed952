@@ -5,12 +5,11 @@ import Form from './components/Form';
 function App() {
   
   return (
-    <>
-      <div>
+    <div className='container-wrapper'>
+      <div className='container'>
         <Form />
       </div>
-       
-    </>
+    </div>
   );
 }
 
