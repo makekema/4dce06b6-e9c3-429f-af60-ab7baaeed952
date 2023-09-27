@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --c-page: #f6f6f6;
+
+  --c-bg: white;
+  --c-bg-contrast: black;
+
+  --c-text: black;
+  --c-text-contrast: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-size: 16px;
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background-color: var(--c-page);
+  font-size: 16px;
+}
+
+/* Media queries */
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: black;
+    --c-bg-contrast: white;
+
+    --c-text: white;
+    --c-text-contrast: black;
+  }
+}

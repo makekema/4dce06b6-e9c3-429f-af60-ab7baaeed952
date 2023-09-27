@@ -1,0 +1,116 @@
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 45rem;
+
+  padding: 2rem 1.25rem;
+}
+
+/* Form */
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  padding: 2rem 1rem;
+  background-color: var(--c-bg);
+  border-radius: 1rem;
+}
+
+/* Inputs */
+
+input,
+.input {
+  line-height: 1.5rem;
+  border: none;
+  border-bottom: 1px solid var(--c-text);
+  background-color: transparent;
+}
+
+input::placeholder,
+.input::placeholder {
+  color: var(--c-text);
+}
+
+/* File input */
+
+.file-input-container {
+  position: relative;
+}
+
+.file-input-container input {
+	position: absolute;
+  width: 0.1px;
+	height: 0.1px;
+
+	overflow: hidden;
+	opacity: 0;
+}
+
+.file-input-content {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.file-input-icon {
+  width: 24px;
+  padding-bottom: 0.25rem;
+  margin-top: -0.25rem;
+
+  stroke: var(--c-text);
+  fill: transparent;
+}
+
+/* UI elements */
+
+button {
+  height: 3rem;
+
+  color: var(--c-text-contrast);
+  background-color: var(--c-bg-contrast);
+
+  border: none;
+  text-transform: uppercase;
+}
+
+/* Media queries */
+
+/* Desktop */
+@media screen and (min-width: 720px) {
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+
+  .grow {
+    grid-column: span 2;
+  }
+
+  .file-input-container {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  
+  .file-input-icon {
+    width: 32px;
+    padding-bottom: 0.25rem;
+    margin-top: -0.25rem;
+  }
+
+  button {
+    grid-column: 1;
+    width: 60%;
+  }
+}
