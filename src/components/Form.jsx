@@ -8,10 +8,6 @@ function Form() {
   const [formData, setFormData] = useState({});
   const [message, setMessage] = useState(null);
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   /* Event handlers */
 
   async function handleSubmit(event) {
@@ -120,18 +116,18 @@ function Form() {
         />
         <label 
           className="file-input-content input"
-          for="photo" 
+          htmlFor="photo" 
         >
           Photo
           <svg className='file-input-icon' viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.9687 3.00012L15.9687 17.0005M7.96875 17.0005C12.3887 17.0005 15.9687 20.7573 15.9687 25.0005C15.9687 20.7573 19.5488 17.0005 23.9688 17.0005M26 28.9999L6 28.9996" stroke-width="2.04124" stroke-miterlimit="10"/>
+            <path d="M15.9687 3.00012L15.9687 17.0005M7.96875 17.0005C12.3887 17.0005 15.9687 20.7573 15.9687 25.0005C15.9687 20.7573 19.5488 17.0005 23.9688 17.0005M26 28.9999L6 28.9996" strokeWidth="2.04124" strokeMiterlimit="10"/>
           </svg>
         </label>
       </div>
       <button type="submit">Submit</button>
-      {message && (
+      {/* {message && (
         <p>{message}</p>
-      )}
+      )} */}
     </form>
   );
 }

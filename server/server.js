@@ -26,7 +26,6 @@ app.use(express.json());
 
 // Proxy route
 app.post('/api', async (req, res) => {
-  console.log(req.body);
   const payload = req.body;
 
   try {
@@ -38,8 +37,6 @@ app.post('/api', async (req, res) => {
     },
       body: JSON.stringify(payload),
     })
-
-    console.log(response);
 
     // Return the response from the target server to the client
     res.status(response.status);
