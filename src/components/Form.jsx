@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
-import { IFormData } from '../types/Types'
 import { postFormData } from '../services/ApiService';
-import { validateEmail } from '../helpers/Form';
+import { validateEmail } from '../helpers/validateEmail';
 
 
 function Form() {
 
   /* State variables */
 
-  const [formData, setFormData] = useState<IFormData>({
+  const [formData, setFormData] = useState({
     first_name: '',
     last_name:'',
     email: '',
     photo: null
   });
 
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState(null);
 
   /* useEffects */
 
@@ -25,7 +24,7 @@ function Form() {
 
   /* Handler functions */
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     //Ensure first_name and email address are present
@@ -41,9 +40,13 @@ function Form() {
     };
 
     try {
-      //Post the form data using the api serice
-      console.log(formData)
-      //await postFormData(formData)
+      //Post the form data using the api service
+      // console.log(formData)
+      await postFormData({
+        first_name: formData.first_name, 
+        last_name: formData.last_name,
+        email: formData.email
+      })
 
       //Reset form data after successful submission
       setFormData({
@@ -62,10 +65,10 @@ function Form() {
     };
   };
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event) {
     const { name, value, files } = event.target;
 
-
+    //Actions concerning file input
     if (name === 'photo' && files && files.length > 0) {
       const file = files[0];
 
@@ -82,6 +85,7 @@ function Form() {
         [name]: file,
       }));
 
+    //Actions concerning name & email input
     } else {
       setFormData((prevFormData) => ({
         ...prevFormData,
